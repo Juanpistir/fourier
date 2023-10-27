@@ -45,14 +45,14 @@ Las series de Fourier son una herramienta fundamental en el análisis de señale
     """
 ## Cómo Utilizar la Aplicación ⬇️
 
-1. Selecciona la onda que deseas analizar: P, Q, R, S, T o U.
+1. Selecciona la onda que deseas analizar: P, Q, R, S, T o U. (En el botón ▶️ en la esquina superior izquierda).
 2. Ajusta los parámetros, como la amplitud, la longitud y el número de términos en la serie de Fourier, utilizando los controles deslizantes interactivos.
 3. Observa la onda descompuesta y su importancia en la detección de trastornos cardíacos.
 4. Explora cada onda por separado y aprende sobre las enfermedades relacionadas con cada una.
 
 Esta aplicación es una herramienta educativa y de análisis que puede ser útil para estudiantes, profesionales de la salud y entusiastas de la cardiología. ¡Esperamos que disfrutes explorando las señales cardiovasculares y aprendiendo sobre su importancia en el diagnóstico de enfermedades cardíacas!🧐
      
-Finalmente, esta aplicación fue desarrollada con dedicación y esfuerzo por Juan Pablo Hurtado Arce. ¡Espero que la disfrutes!. 😊".  
+Finalmente, esta aplicación fue desarrollada con dedicación y esfuerzo por Juan Pablo Hurtado Arce. ¡Espero que la disfrutes!.😊  
     """
 )
 
