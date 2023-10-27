@@ -2,9 +2,9 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Definir los parámetros
-l = 1.0  # Longitud de onda
-a = 0.25  # Amplitud
+# Definir los parámetros iniciales
+longitud = 1.0  # Longitud de onda
+amplitud = 0.25  # Amplitud inicial
 b = 3
 n = 100
 
@@ -24,26 +24,25 @@ def calculate_waveform(x, l, a, b, n):
     ondap = a * ondap
     return ondap
 
-# Calcular la onda P
-ondap = calculate_waveform(x, l, a, b, n)
-
-# Crear la gráfica
-fig, ax = plt.subplots(figsize=(8, 8))
-ax.plot(x, ondap)
-ax.grid(True)
-ax.set_title("ONDA SINUSOIDAL P")
-ax.set_xlabel("Tiempo (s)")
-ax.set_ylabel("Amplitud") 
-
-# Configuración de la página Streamlit
-st.set_page_config(
-    page_title="Análisis de Señales Cardiovasculares",
-    page_icon="❤️",
-)
-
 def run():
     st.write("# Análisis de Señales Cardiovasculares")
     st.write("Esta aplicación genera y muestra la onda sinusoidal P.")
+    
+    amplitud = st.text_input("Introduce la amplitud:", 0.25)  # Obtener el valor de amplitud
+    amplitud = float(amplitud)  # Convertir a flotante
+
+    longitud = st.text_input("Introduce la longitud:", 1.0)  # Obtener el valor de longitud
+    longitud = float(longitud)  # Convertir a flotante
+
+    ondap = calculate_waveform(x, longitud, amplitud, b, n)  # Calcular la onda P
+
+    # Crear la gráfica
+    fig, ax = plt.subplots(figsize=(8, 8))
+    ax.plot(x, ondap)
+    ax.grid(True)
+    ax.set_title("ONDA SINUSOIDAL P")
+    ax.set_xlabel("Tiempo (s)")
+    ax.set_ylabel("Amplitud") 
     
     st.pyplot(fig, use_container_width=True)
 
