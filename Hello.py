@@ -1,12 +1,21 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+from st_pages import Page, Section, add_page_title, show_pages
 
-# Configuración de la página Streamlit
-st.set_page_config(
-    page_title="Análisis de Señales Cardiovasculares",
-    page_icon="❤️",
-)
+add_page_title()
+
+show_pages([
+    Page("Hello.py", "Bienvenidos", "✔️"),
+    Section("Ondas", icon="🌫️"),
+    Page("pages/OP.py", "Ver Onda P", "🟧"),
+    Page("pages/OQ.py", "Ver Onda Q", "🟨"),
+    Page("pages/OR.py", "Ver Onda R", "🟧"),
+    Page("pages/OS.py", "Ver Onda S", "🟦"),
+    Page("pages/OT.py", "Ver Onda T", "🟫"),
+    Page("pages/OU.py", "Ver Onda U", "⬜"),
+])
+
 
 def run():
     st.markdown(
