@@ -4,4 +4,4 @@ pandas
 pydeck
 streamlit
 matplotlib
-neurokit2
+st_pages
