@@ -2,47 +2,46 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Parámetros de la onda U
-l_u = 1    # Longitud de onda
-a_u = 0.03  # Amplitud
-b_u = 21    # Parámetro b
-n_u = 100   # Número de términos en la serie
-u1 = 1 / l_u
-u2 = 0
-
-# Generar la onda U
-x_u = np.arange(0.01, 2.01, 0.01)
-x_u = x_u - (1 / 1.1)  # Ajustar la posición de x
-ondau1 = np.zeros(len(x_u))
-for i in range(1, n_u + 1):
-    harm4 = (((np.sin((np.pi / (2 * b_u)) * (b_u - (2 * i))) / (b_u - (2 * i)) +
-              (np.sin((np.pi / (2 * b_u)) * (b_u + (2 * i))) / (b_u + (2 * i))) * (2 / np.pi)) *
-             np.cos((i * np.pi * x_u) / l_u)))
-    u2 += harm4
-    ondau1 += harm4
-
-ondau = a_u * (u1 + u2)
-
-# Corregir el rango de x para la onda U
-x_u = np.arange(0.01, 2.01, 0.01)
-
-# Crear la gráfica para la onda U
-fig_u, ax_u = plt.subplots(figsize=(8, 4))
-ax_u.plot(x_u, ondau)
-ax_u.grid(True)
-ax_u.set_title("ONDA SINUSOIDAL U")
-ax_u.set_xlabel("Tiempo (s)") 
-ax_u.set_ylabel("Amplitud") 
-
-# Configuración de la página Streamlit
-st.set_page_config(
-    page_title="Análisis de Señales Cardiovasculares",
-    page_icon="❤️",
-)
+# Función para calcular la serie de Fourier
+def fourier_series_u(x, a, b, L, n_terms):
+    series_sum = 0
+    for n in range(1, n_terms + 1):
+        term = (2 / np.pi) * ((np.sin(np.pi / (2 * b) * (b - 2 * n)) / (b - 2 * n)) + (np.sin(np.pi / (2 * b) * (b + 2 * n)) / (b + 2 * n)))
+        term *= np.cos((n * np.pi / L) * x)
+        series_sum += term
+    return a * (1 / L) * series_sum
 
 def run():
     st.write("# Análisis de Señales Cardiovasculares")
+    st.markdown(
+        """
+## Onda P
+La onda P en un ECG representa la despolarización auricular, es decir, la contracción de las aurículas del corazón. Su importancia radica en la iniciación de la secuencia de eventos cardíacos. Algunas condiciones médicas relacionadas con la onda P incluyen:
+- **Fibrilación auricular:** Una arritmia común en la que las aurículas laten de manera irregular y rápida.
+
+        """
+    )
     st.write("Esta aplicación genera y muestra la onda sinusoidal U.")
+
+    # Parámetros de la onda U
+    l_u = st.slider("Longitud de onda U", min_value=0.1, max_value=2.0, value=1.0, step=0.01)
+    a_u = st.slider("Amplitud U", min_value=0.01, max_value=0.1, value=0.03, step=0.01)
+    b_u = st.slider("Parámetro b U", min_value=1, max_value=30, value=21, step=1)
+    n_u = st.slider("Número de términos en la serie de Fourier", min_value=1, max_value=200, value=100)
+    
+    # Rango de tiempo
+    x_u = np.arange(0.01, 2.01, 0.01)
+    x_u = x_u - (1 / 1.1)  # Ajustar la posición de x
+
+    ondau = fourier_series_u(x_u, a_u, b_u, l_u, n_u)  # Calcular la onda U
+
+    # Crear la gráfica para la onda U
+    fig_u, ax_u = plt.subplots(figsize=(8, 8))
+    ax_u.plot(x_u, ondau)
+    ax_u.grid(True)
+    ax_u.set_title("ONDA SINUSOIDAL U")
+    ax_u.set_xlabel("Tiempo (s)") 
+    ax_u.set_ylabel("Amplitud") 
     
     st.pyplot(fig_u, use_container_width=True)
 
