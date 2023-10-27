@@ -33,7 +33,7 @@ La onda P en un ECG representa la despolarización auricular, es decir, la contr
     ondap = fourier_series(x, amplitud, b, longitud, n_terms)  # Calcular la onda P
 
     # Crear la gráfica
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots(figsize=(8, 4))
     ax.plot(x, ondap)
     ax.grid(True)
     ax.set_title("ONDA SINUSOIDAL P")

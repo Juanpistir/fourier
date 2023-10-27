@@ -15,9 +15,10 @@ def run():
     st.write("# Análisis de Señales Cardiovasculares")
     st.markdown(
         """
-## Onda P
-La onda P en un ECG representa la despolarización auricular, es decir, la contracción de las aurículas del corazón. Su importancia radica en la iniciación de la secuencia de eventos cardíacos. Algunas condiciones médicas relacionadas con la onda P incluyen:
-- **Fibrilación auricular:** Una arritmia común en la que las aurículas laten de manera irregular y rápida.
+## Onda U
+La onda U es una pequeña onda que sigue a la onda T. Aunque su función exacta no se comprende completamente, se asocia con la repolarización tardía y puede variar en tamaño. Cambios en la onda U pueden estar relacionados con:
+- **Hipopotasemia:** Niveles bajos de potasio en la sangre, que pueden causar alteraciones en la onda U.
+
 
         """
     )
@@ -36,7 +37,7 @@ La onda P en un ECG representa la despolarización auricular, es decir, la contr
     ondau = fourier_series_u(x_u, a_u, b_u, l_u, n_u)  # Calcular la onda U
 
     # Crear la gráfica para la onda U
-    fig_u, ax_u = plt.subplots(figsize=(8, 8))
+    fig_u, ax_u = plt.subplots(figsize=(8, 4))
     ax_u.plot(x_u, ondau)
     ax_u.grid(True)
     ax_u.set_title("ONDA SINUSOIDAL U")
